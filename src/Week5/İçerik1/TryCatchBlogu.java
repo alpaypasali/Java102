@@ -1,7 +1,12 @@
 package Week5.İçerik1;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class TryCatchBlogu {
     public static void main(String[] args) {
+
+
         // MyArrayClass örneği oluşturma
         MyArrayClass myArrayClass = new MyArrayClass();
 
