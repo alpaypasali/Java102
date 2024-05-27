@@ -70,7 +70,7 @@ public class Main {
 
                     break;
                 case 3:
-                    System.out.println("Markalarımız");
+                    System.out.println("Brands");
                     System.out.println("--------------");
                     TreeSet<Brand> brands = new TreeSet<>(new OrderNameComperator());
                     brands.addAll(brandList);
@@ -83,8 +83,8 @@ public class Main {
                     exit=true;
                     break;
                 default:
-                    // Geçersiz bir seçenek seçildiğinde kullanıcıya uyarı mesajı gösterilir.
-                    System.out.println("Geçersiz bir seçim yaptınız. Lütfen tekrar deneyin.");
+
+                    System.out.println("Invalid choice. Please try again.");
                     break;
 
             }
