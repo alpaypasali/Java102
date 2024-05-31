@@ -21,7 +21,7 @@ public class Main {
     }
 
     public static void CreateFile (String[] value) throws IOException {
-        FileWriter fileWriter = new FileWriter("input.txt",true);
+        FileWriter fileWriter = new FileWriter("input.txt",false);
         BufferedWriter output = new BufferedWriter(fileWriter);
         for(String v : value){
 
