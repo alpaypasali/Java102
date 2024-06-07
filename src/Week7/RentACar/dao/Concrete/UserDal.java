@@ -17,11 +17,11 @@ public class UserDal implements IUserDal {
     public UserDal() {
         this.conn = Db.getInstance();
     }
-    public List<User> getAll() {
-        List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM public.user";
-        try (PreparedStatement pr = conn.prepareStatement(query);
-             ResultSet rs = pr.executeQuery()) {
+    public ArrayList<User> getAll() {
+        ArrayList<User> users = new ArrayList<>();
+
+        try{
+        ResultSet rs = this.conn.createStatement().executeQuery("SELECT * FROM public.user order by id ASC");
             while (rs.next()) {
                 users.add(extractUser(rs));
             }
@@ -68,6 +68,23 @@ public class UserDal implements IUserDal {
         }
         return false;
     }
+
+    @Override
+    public User getById(int id) {
+        User user = null;
+        String query = "Select * from public.user where id = ?";
+        try{
+            PreparedStatement pr = conn.prepareStatement(query);
+            pr.setInt(1,id);
+            ResultSet rs = pr.executeQuery();
+            if(rs.next())
+                user =this.extractUser(rs);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  user;
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getInt("id"));

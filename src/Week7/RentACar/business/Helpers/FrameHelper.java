@@ -13,11 +13,12 @@ public class FrameHelper {
 
     // Çerçeve ayarlarını yapacak metot
     public static void setupFrame(JFrame frame, int width, int height, String title) {
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setTitle(title);
         frame.setSize(width, height);
         Point centerLocation = getCenterLocation(width, height);
         frame.setLocation(centerLocation);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         frame.setVisible(true);
     }
 }
