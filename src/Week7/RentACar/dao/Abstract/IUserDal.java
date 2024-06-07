@@ -4,6 +4,7 @@ import Week7.RentACar.entity.User;
 
 public interface IUserDal {
 
-    User signIn(String username , String password);
+    User signIn(String email , String password);
+    boolean create(User user);
 
 }

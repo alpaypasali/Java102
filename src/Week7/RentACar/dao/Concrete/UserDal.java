@@ -32,13 +32,13 @@ public class UserDal implements IUserDal {
     }
 
     @Override
-    public User signIn(String username, String password) {
+    public User signIn(String email, String password) {
        User user = null;
-       String query = "Select * from public.user where username = ? And password = ?";
+       String query = "Select * from public.user where email = ? And password = ?";
 
        try{
            PreparedStatement pr = this.conn.prepareStatement(query);
-           pr.setString(1,username);
+           pr.setString(1,email);
            pr.setString(2,password);
            ResultSet rs = pr.executeQuery();
            if(rs.next()){
@@ -52,13 +52,30 @@ public class UserDal implements IUserDal {
        }
        return  user;
     }
+    public boolean create(User user) {
+        String query = "INSERT INTO public.user ( email, password, role, name , phone) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement pr = this.conn.prepareStatement(query);
+            pr.setString(1, user.getEmail());
+            pr.setString(2, user.getPassword());
+            pr.setString(3, user.getRole());
+            pr.setString(4, user.getName());
+            pr.setString(5, user.getPhone());
 
+            return pr.executeUpdate() != -1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     private User extractUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getInt("id"));
-        user.setUsername(rs.getString("username"));
+        user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
         user.setRole(rs.getString("role"));
+        user.setName(rs.getString("name"));
+        user.setPhone(rs.getString("phone"));
         return user;
     }
 }
