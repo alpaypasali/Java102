@@ -21,10 +21,10 @@ public class AdminUserView extends AdminLayout {
     public AdminUserView(User user) {
         this.user = user;
         userService = new UserManager();
-        // Initialize components
+
             guiIntilaze();
 
-        // Set up the frame
+
         this.add(container);
 
 
