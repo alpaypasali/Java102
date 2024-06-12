@@ -11,5 +11,6 @@ public interface IModelService {
     SuccessInformationMessage delete(int id);
     Model getById(int id);
     ArrayList<Model> getAll();
+    ArrayList<Object[]> getForTable(int size, ArrayList<Model> modelList);
 
 }

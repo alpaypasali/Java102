@@ -51,7 +51,7 @@ public class AdminBrandHomeView extends AdminLayout {
 
 
     }
-        public void UpdateBrand(){
+    public void UpdateBrand(){
 
             this.brandMenu.add("Update").addActionListener(e -> {
                 int selectedRow = tbl_brandList.getSelectedRow();

@@ -7,6 +7,7 @@ import Week7.RentACar.business.Handlers.SuccessInformationMessage;
 import Week7.RentACar.business.Services.IModelService;
 import Week7.RentACar.dao.Abstract.IModelDal;
 import Week7.RentACar.dao.Concrete.ModelDal;
+import Week7.RentACar.entity.Brand;
 import Week7.RentACar.entity.Model;
 
 import java.util.ArrayList;
@@ -17,7 +18,23 @@ public class ModelManager implements IModelService {
     public ModelManager() {
         this.modelDal = new ModelDal();
     }
-
+    @Override
+    public ArrayList<Object[]> getForTable(int size, ArrayList<Model> modelList){
+        ArrayList<Object[]> modelObjList = new ArrayList<>();
+        for (Model obj : modelList) {
+            int i = 0;
+            Object[] rowObject = new Object[size];
+            rowObject[i++] = obj.getId();
+            rowObject[i++] = obj.getBrand().getName();
+            rowObject[i++] = obj.getName();
+            rowObject[i++] = obj.getType();
+            rowObject[i++] = obj.getYear();
+            rowObject[i++] = obj.getFuel();
+            rowObject[i++] = obj.getGear();
+            modelObjList.add(rowObject);
+        }
+        return modelObjList;
+    }
     @Override
     public SuccessInformationMessage create(Model model) {
         try {

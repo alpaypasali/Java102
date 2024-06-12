@@ -3,6 +3,7 @@ package Week7.RentACar.view.Admin;
 import Week7.RentACar.business.Helpers.FrameHelper;
 import Week7.RentACar.entity.User;
 import Week7.RentACar.view.Admin.AdminBrandView.AdminBrandHomeView;
+import Week7.RentACar.view.Admin.AdminModelView.AdminModelHomeView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,12 @@ public class AdminHomeView extends  JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AdminBrandHomeView brandHomeView = new AdminBrandHomeView(user);
+            }
+        });
+        btn_mngModels.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminModelHomeView modelHomeView = new AdminModelHomeView(user);
             }
         });
     }

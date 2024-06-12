@@ -1,6 +1,7 @@
 package Week7.RentACar.dao.Concrete;
 
 import Week7.RentACar.core.Db;
+import Week7.RentACar.dao.Abstract.IBrandDal;
 import Week7.RentACar.dao.Abstract.IModelDal;
 import Week7.RentACar.entity.Model;
 import Week7.RentACar.entity.User;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class ModelDal implements IModelDal {
     private final Connection conn;
+    private  final IBrandDal brandDal;
 
     private static final String SELECT_ALL_QUERY = "SELECT * FROM public.model ORDER BY id ASC";
     private static final String INSERT_QUERY = "INSERT INTO public.model (name, fuel, gear, type, year, brand_id) VALUES (?, ?, ?, ?, ?, ?)";
@@ -26,6 +28,7 @@ public class ModelDal implements IModelDal {
 
     public ModelDal() {
         this.conn = Db.getInstance();
+        brandDal = new BrandDal();
     }
 
     @Override
@@ -104,6 +107,7 @@ public class ModelDal implements IModelDal {
         model.setType(Type.valueOf(rs.getString("type")));
         model.setYear(rs.getInt("year"));
         model.setBrand_id(rs.getInt("brand_id"));
+        model.setBrand(this.brandDal.getByid(rs.getInt("brand_id")));
         return model;
     }
 }
