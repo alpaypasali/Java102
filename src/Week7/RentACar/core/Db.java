@@ -33,5 +33,6 @@ public class Db {
             System.out.println(e.getMessage());
         }
         return instance.getConnection();
+
     }
 }

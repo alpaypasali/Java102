@@ -74,6 +74,7 @@ public class BrandDal implements IBrandDal {
     private boolean executeUpdate(String query, Brand brand) {
         try (PreparedStatement pr = conn.prepareStatement(query)) {
             pr.setString(1, brand.getName());
+            int deneme = 1;
             if (query.equals(UPDATE_QUERY)) {
                 pr.setInt(2, brand.getId());
             }
